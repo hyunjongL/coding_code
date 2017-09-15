@@ -12,8 +12,27 @@ def var_init():
         code += '\n'
     return code
 
-def line_of_code():
+def line_of_code(depth):
     line = ''
+    if(random.random()>0.8):
+        line += '    '*depth
+        line += 'if '
+        line += variables[random.randrange(0,3,1)]
+        line += ' '
+        line += ['>', '<'][random.randrange(0,2,1)]
+        line += ' '
+        line += variables[random.randrange(0,3,1)]
+        line += ':\n'
+        depth += 1
+    elif(random.random()>0.9):
+        line += '    '*depth
+        line += 'while '
+        line += variables[random.randrange(0,3,1)]
+        line += ['>', '<'][random.randrange(0,2,1)]
+        line += variables[random.randrange(0,3,1)]
+        line += ':\n'
+        depth += 1
+    line += '    '*depth
     line += variables[random.randrange(0,3,1)]
     line += ' = '
     line += variables[random.randrange(0,3,1)]
@@ -22,12 +41,17 @@ def line_of_code():
     line += ' '
     line += variables[random.randrange(0,3,1)]
     line += '\n'
-    return line
+    return (line,depth)
 
 def write_codes(n):
     code = var_init()
+    depth = 0
     for i in range(n):
-        code += line_of_code()
+        if depth > 0 and random.random()>0.8:
+            depth -= 1
+        line = line_of_code(depth)
+        depth = line[1]
+        code += line[0]
     code += "print(a, b, c)"
     return code
 
