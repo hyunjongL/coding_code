@@ -1,19 +1,33 @@
 import random
 
-
+imports = ['random']
 variables = ['a', 'b', 'c', 'd', 'e']
 operation = ['+', '-']
 
+import_num = len(imports)
 var_num = len(variables)
 op_num = len(operation)
 
+def import_init():
+    if import_num == 0:
+        return ''
+    else:
+        code = ''
+        for i in imports:
+            code += 'import '
+            code += i
+            code += '\n'
+        code += '\n'
+        return code
+
 def var_init():
-    code =''
+    code ='# variable initialization\n'
     for i in variables:
         code += i
         code += ' = '
         code += str(random.randrange(-100,100,1))
         code += '\n'
+    code += '\n'
     return code
 
 def fill_line(depth, type):
@@ -69,7 +83,9 @@ def line_of_code(depth):
     return (line,depth)
 
 def write_codes(n):
-    code = var_init()
+    code = ''
+    code += import_init()
+    code += var_init()
     depth = 0
     for i in range(n):
         if depth > 0 and random.random()>0.8:
