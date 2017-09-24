@@ -10,6 +10,8 @@ Now need to think about how to prevent infinte loops( or if it is impossible to 
 Also need to think about how to make a useful or meaningful code.
 Below is an example of an output code.
 
+-A possible improvement: add some URLs and system paths so it looks like a more 'cool' code.
+
 ### < code.py >
 
     a = 98
